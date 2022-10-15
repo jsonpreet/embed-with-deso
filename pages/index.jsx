@@ -36,7 +36,7 @@ const Home = () => {
   React.useEffect(() => {
     getAppState()
     newPost();
-  }, [])
+  }, [router])
 
 
   React.useEffect(() => {
