@@ -112,12 +112,27 @@ export default Embed
 export const Post = ({ post, exchangeRate, profile, nodes, isRepost }) => {
     const [videoEmbed, setEmbed] = React.useState('')
     const [readMore, setReadMore] = React.useState(false)
+    const [nftEntry, setNftEntry] = React.useState('')
 
     React.useEffect(() => {
         const response = getEmbedURL(post.PostExtraData['EmbedVideoURL']);
         setEmbed(response)
         checkLength();
+        // if (post.IsNFT) {
+        //     getNFTEntries()
+        // }
     }, [post])
+
+    const getNFTEntries = async () => {
+        const request = {
+            "PostHashHex": `${post.PostHashHex}`,
+        }
+        const { data } =  await axios.post(`https://node.deso.org/api/v0/get-nft-entries-for-nft-post`,request)
+        //const response = await deso.posts.getNFTEntries(request);
+        if (data) {
+            setNftEntry(data)
+        }
+    }
 
     const checkLength = () => {
         post.Body.substring(0, 580).length < post.Body.length ? setReadMore(false) : setReadMore(true)
@@ -150,7 +165,7 @@ export const Post = ({ post, exchangeRate, profile, nodes, isRepost }) => {
     const handleClick = (url) => {
         window.open(url, '_blank');
     }
-     
+
     return (
         <div className={`${isRepost ? `my-2` : ``} flex flex-1 bg-white border ${!isRepost ? `hover:bg-gray-50/80` : `hover:bg-gray-100/50`} transition duration-100 border-gray-200 rounded-xl p-[15px] flex-col w-full max-w-xl`}>
             <div onClick={() => handleClick(`${nodeURL}/posts/${post.PostHashHex}`)} rel="noopener noreferrer nofollow" target='_blank' style={{ cursor: 'pointer'}}>
@@ -212,8 +227,9 @@ export const Post = ({ post, exchangeRate, profile, nodes, isRepost }) => {
                             }
                             {!isRepost &&
                                 <div>
-                                    <div className='flex flex-row items-center mt-2 border-b border-gray-300 pb-2'>
+                                    <div className='flex flex-row justify-between items-center mt-2 border-b border-gray-300 pb-2'>
                                         <a href={`${nodeURL}/posts/${post.PostHashHex}`} target='_blank' className='text-gray-600 hover:underline text-[13px]'>{dateFormat(post.TimestampNanos)}</a>
+                                        {post.IsNFT && <a href={`${nodeURL}/posts/${post.PostHashHex}`} target='_blank' className='text-white bg-blue-600 rounded py-1 px-2 hover:underline text-[13px]'>NFT</a>}
                                     </div>
                                     <div className='flex flex-row justify-between items-center mt-2'>
                                         <a href={`${nodeURL}/posts/${post.PostHashHex}`} target='_blank' className='flex flex-row items-center group'>

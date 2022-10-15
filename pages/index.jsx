@@ -154,21 +154,15 @@ const Home = () => {
   }
 
   const onResized = (data) => {
-      window.scrollTo({
-        top: 400,
-        behavior: 'smooth',
-    });
-    if (data.type !== 'mutationObserver') {
-      
-    }
+    //moveToEmbed()
   }
   
   const moveToEmbed = () => {
-    //embedRef.current.scrollIntoView()
-    // window.scrollTo({
-    //     top: 739,
-    //     behavior: 'smooth',
-    // });
+    embedRef.current.scrollIntoView()
+    window.scrollTo({
+        top: 100,
+        behavior: 'smooth',
+    });
   }
 
   const handleKeyPress = (e) => {
@@ -238,7 +232,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className='flex flex-col w-full max-w-3xl min-h-[700px] mx-auto items-center pt-10 pb-40 text-center'>
+      <div className='flex flex-col w-full max-w-3xl min-h-[100px] mx-auto items-center pt-10 pb-40 text-center'>
         <div ref={embedRef} className='embed flex-col w-full flex items-center justify-center'>
           <h3 className='text-center text-xl font-medium my-font'>To embed this post on your website, just paste the code below!</h3>
           <div className='flex flex-row w-full mt-4 relative overflow-hidden'>
@@ -256,8 +250,6 @@ const Home = () => {
           {(postID && showEmbed) &&
             <div className='flex flex-row w-full min-w-[400px] md:min-w-[500px] items-center justify-center mt-4 relative overflow-hidden'>
               <IframeResizer
-                forwardRef={iframeRef}
-                autoResize={true}
                 heightCalculationMethod="lowestElement"
                 inPageLinks
                 log={false}
