@@ -24,7 +24,7 @@ const Home = () => {
   const [results, setResults] = React.useState([])
   const [loading, setLoading] = React.useState(false)
   const [error, setError] = React.useState(false)
-  const [code, setCode] = React.useState(`<span id="deso-embed" data-post-hash="" /><script src="https://embed.withdeso.com/script.js"></script>`)
+  const [code, setCode] = React.useState(`<div class="deso-embed" data-post-hash=""></div><script src="https://embed.withdeso.com/script.js"></script>`)
   const [copied, setIsCopied] = React.useState(false)
   const [showEmbed, setShowEmbed] = React.useState(false)
   const embedRef = React.useRef(null)
@@ -65,7 +65,7 @@ const Home = () => {
 
   React.useEffect(() => {
     //loadScript(script)
-    setCode(`<div id="deso-embed" data-post-hash="${postID}"></div><script src="https://embed.withdeso.com/script.js"></script>`)
+    setCode(`<div class="deso-embed" data-post-hash="${postID}"></div><script src="https://embed.withdeso.com/script.js"></script>`)
     setShowEmbed(true)
   }, [postID])
 

@@ -5,13 +5,13 @@
         const e = document.querySelectorAll(".deso-embed");
         for (let n = 0; n < e.length; n++) {
             const t = e[n],
-                i = t.getAttribute("data-id");
+                i = t.getAttribute("data-post-hash");
             if (null == t) return;
             if (t.children.length > 0) return;
             const o = document.createElement("iframe"),
                 r = i.split("-")[0] ?? "widget",
                 a = `deso-frame-${r}`;
-            o.id = a, o.setAttribute("loading", "lazy"), o.setAttribute("src", `http://localhost:3000/embed/${i}`), o.setAttribute("scrolling", "no"), o.setAttribute("frameborder", "0"), o.setAttribute("width", "100%"), t.appendChild(o), iFrameResize({
+            o.id = a, o.setAttribute("loading", "lazy"), o.setAttribute("src", `https://embed.withdeso.com/embed/${i}`), o.setAttribute("scrolling", "no"), o.setAttribute("frameborder", "0"), o.setAttribute("width", "100%"), t.appendChild(o), iFrameResize({
                 log: !1,
                 checkOrigin: !1
             }, `#${a}`)
