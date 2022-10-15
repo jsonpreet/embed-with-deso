@@ -81,11 +81,11 @@ const Post = ({ post, exchangeRate, profile, nodes, isRepost }) => {
                             <div className='flex flex-row items-center'>
                                 <div className='flex flex-col items-start justify-center'>
                                     <div className='flex flex-row items-center'>
-                                        <a href={`${nodeURL}/u/${profile?.Username}`} rel="noopener noreferrer nofollow" className='leading-none font-semibold text-black hover:underline hover:text-[#0056b3] text-[15px]' target='_blank'>{profile?.Username}</a>
+                                        <a rel="noopener noreferrer nofollow" href={`${nodeURL}/u/${profile?.Username}`} className='leading-none font-semibold text-black hover:underline hover:text-[#0056b3] text-[15px]' target='_blank'>{profile?.Username}</a>
                                         {profile?.IsVerified && <span className='verified w-4 h-4 ml-[2px]'>Verified</span>}
                                         <span className='bg-gray-100 px-[12px] py-[4px] text-[12px] font-semibold text-gray-700 rounded-full ml-2'>
                                             ~${((profile?.CoinPriceDeSoNanos / 1000000000) * exchangeRate).toFixed(2)}
-                                            <a target="_blank" className='ml-1 hover:text-[#0056b3] text-[#007bff]' href={`${nodeURL}/${profile?.Username}`}>Buy</a>
+                                            <a rel="noopener noreferrer nofollow" target="_blank" className='ml-1 hover:text-[#0056b3] text-[#007bff]' href={`${nodeURL}/${profile?.Username}`}>Buy</a>
                                         </span>
                                     </div>
                                     <div className='flex flex-row items-center'>

@@ -3,6 +3,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router';
 import { Shimmer } from '@/components/shimmer';
 import axios from 'axios';
+import Post from './post';
 
 
 const Embed = () => {
