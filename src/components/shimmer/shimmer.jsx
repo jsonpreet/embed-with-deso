@@ -12,8 +12,8 @@ const Shimmer = () => {
                             <ShimmerTitle variant="secondary" />
                         </div>
                     </div>
-                    <ShimmerText line={3} />
-                    <ShimmerThumbnail height={200} rounded />
+                    <ShimmerText line={2} />
+                    <ShimmerThumbnail height={150} rounded />
                     <div className='flex py-4 flex-row justify-between'>
                         <ShimmerTitle line={1} className="w-[10%]" variant="secondary" />
                         <ShimmerTitle line={1} className="w-[10%]" variant="secondary" />
