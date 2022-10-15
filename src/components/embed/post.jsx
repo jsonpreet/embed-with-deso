@@ -75,7 +75,7 @@ const Post = ({ post, exchangeRate, profile, nodes, isRepost }) => {
                         <div className='flex flex-row items-center'>
                             <div className='mr-2'>
                                 <a href={`${nodeURL}/u/${profile?.Username}`} target='_blank' rel="noopener noreferrer nofollow">
-                                    <img alt={profile.Username} className='rounded-full' src={profile?.ExtraData?.LargeProfilePicURL || `https://node.deso.org/api/v0/get-single-profile-picture/${profile?.PublicKeyBase58Check}`} width={50} height={50} />
+                                    <img alt={profile.Username} className='rounded-full' src={profile?.ExtraData?.LargeProfilePicURL || `https://node.deso.org/api/v0/get-single-profile-picture/${profile?.PublicKeyBase58Check}`} width={50} height={50} style={{ width: '50px', height: '50px'}} />
                                 </a>
                             </div>
                             <div className='flex flex-row items-center'>
