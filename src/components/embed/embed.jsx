@@ -81,7 +81,7 @@ const Embed = () => {
     return (
         <>
             <Head>
-                <title>Embed Post with DESO</title>
+                <title>Embed DeSo Posts On Your Website - With DeSo</title>
             </Head>
             <style jsx global>
                 {`

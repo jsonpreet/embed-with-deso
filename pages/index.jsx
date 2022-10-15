@@ -198,7 +198,7 @@ const Home = () => {
   return (
     <>
       <Head>
-        <title>Embed Post with DESO</title>
+        <title>Embed DeSo Posts On Your Website - With DeSo</title>
       </Head>
       <div className='main-section bg-[#031128] bg-gradient-to-br from-[#031128] to-[#0000ff33] w-full flex-col z-10 relative items-start justify-center'>
         <div className='header-section flex flex-row items-start justify-between w-full px-20 py-5'>

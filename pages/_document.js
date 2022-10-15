@@ -24,18 +24,27 @@ class MyDocument extends Document {
             <Html lang="en">
                 <Head>
                     <meta name="robots" content="index, follow" />
-                    <meta name="description" content="Embed Post with DESO" />
-                    <link rel="icon" href="/favicon.ico" />
+                    <meta name="description" content="Embed DeSo Posts On Your Website - With DeSo" />
+                    <link rel="icon" href="/favicon.png" />
+                    <meta property="og:type" content="website" />
+                    <meta property="og:url" content="https://embed.withdeso.com" />
+                    <meta property="og:title" content="Embed DeSo Posts On Your Website - With DeSo" />
+                    <meta property="og:description" content="Embed Post with DESO"/>
+                    <meta property="og:image" content="https://embed.withdeso.com/og-image.png"/>
+                    <meta property="twitter:card" content="summary_large_image" />
+                    <meta property="twitter:url" content="https://embed.withdeso.com" />
+                    <meta property="twitter:title" content="Embed DeSo Posts On Your Website - With DeSo" />
+                    <meta property="twitter:description" content="Embed DeSo Posts On Your Website - With DeSo"/>
+                    <meta property="twitter:image" content="https://embed.withdeso.com/og-image.png" />
                     <meta name="twitter:card" content="summary_large_image" />
                     <meta name="twitter:site" content="@jsonpreet" />
                     <meta name="twitter:creator" content="@jsonpreet" />
-                    <meta property="og:image:alt" content="Embed with DESO" />
+                    <meta property="og:image:alt" content="Embed DeSo Posts On Your Website - With DeSo" />
                     <meta property="og:image:width" content="1200" />
-                    <meta property="og:image:height" content="630" />
-                    <meta property="og:site_name" content="Embed with DESO" />
+                    <meta property="og:image:height" content="675" />
+                    <meta property="og:site_name" content="Embed DeSo Posts On Your Website - With DeSo" />
                     <meta property="og:type" content="website" />
                     <meta property="og:locale" content="en_US" />
-                    <link rel="manifest" href="/manifest.json" />
                     <link rel="preconnect" href="https://fonts.googleapis.com"/>
                     <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true"/>
                     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Montserrat:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet" /> 

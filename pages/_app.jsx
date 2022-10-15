@@ -7,7 +7,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
-          <title>Deso Embed - Easily Embed Deso Posts Anywhere</title>
+          <title>Embed DeSo Posts On Your Website - With DeSo</title>
       </Head>
       <Component {...pageProps} />
       <ToastContainer />
