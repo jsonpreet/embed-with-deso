@@ -65,7 +65,7 @@ const Home = () => {
 
   React.useEffect(() => {
     //loadScript(script)
-    setCode(`<span id="deso-embed" data-post-hash="${postID}" /><script src="https://embed.withdeso.com/script.js"></script>`)
+    setCode(`<div id="deso-embed" data-post-hash="${postID}"></div><script src="https://embed.withdeso.com/script.js"></script>`)
     setShowEmbed(true)
   }, [postID])
 
