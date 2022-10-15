@@ -45,7 +45,7 @@ const Post = ({ post, exchangeRate, profile, nodes, isRepost }) => {
 
     const LinkifyRenderLink = ({ attributes, content }) => {
         const { href, ...props } = attributes;
-        return <a href={href} target='_blank' className='text-[#007bff] hover:text-[#0056b3] hover:underline' {...props}>{content}</a>;
+        return <a href={href} target='_blank' className='text-[#007bff] hover:text-[#0056b3] hover:underline' rel="noopener noreferrer nofollow" {...props}>{content}</a>;
     };
 
     const LinkifyOptions = {
@@ -57,7 +57,7 @@ const Post = ({ post, exchangeRate, profile, nodes, isRepost }) => {
             mention: LinkifyRenderLink,
             hashtag: LinkifyRenderLink,
             url: ({ attributes, content }) => {
-                return <a {...attributes} className='text-[#007bff] hover:text-[#0056b3] hover:underline' target="_blank">{content}</a>
+                return <a {...attributes} className='text-[#007bff] hover:text-[#0056b3] hover:underline' rel="noopener noreferrer nofollow" target="_blank">{content}</a>
             },
         },
         nl2br: true
