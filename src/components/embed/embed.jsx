@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { Shimmer } from '@/components/shimmer';
 import axios from 'axios';
 import Post from './post';
+import { useScript } from '@/lib/utils';
 
 
 const Embed = () => {
