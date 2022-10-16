@@ -91,7 +91,7 @@ const Embed = () => {
                 `}
             </style>
             <div className='jsx-790afad6ff862db min-w-[360px] sm:min-w-[448px] md:min-w-[500px] justify-center items-center mx-auto flex-row'>
-                {loading && <div className='flex-row flex text-black w-full max-w-[500px]'>
+                {loading && <div className='flex-row flex text-black justify-center items-center mx-auto max-w-[500px]'>
                     <Shimmer />
                 </div>}
                 {(!loading && post) &&
