@@ -255,7 +255,7 @@ const Home = () => {
                 log={false}
                 onResized={onResized}
                 src={`/embed/${postID}`}
-                style={{ minWidth: '360px' }}
+                width="100%"
               />
             </div>
           }
