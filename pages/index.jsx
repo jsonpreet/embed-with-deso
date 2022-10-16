@@ -36,7 +36,7 @@ const Home = () => {
 
   React.useEffect(() => {
     getAppState()
-    newPost();
+    //newPost();
   }, [router])
 
 
@@ -48,7 +48,6 @@ const Home = () => {
   }, []);
 
   React.useEffect(() => {
-    console.log(router.query)
     if (router.query.url !== undefined && router.query.url !== '') {
       setPostUrl(removeQueryParam(router.query.url))
       setQuery(removeQueryParam(router.query.url))
