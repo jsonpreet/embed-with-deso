@@ -248,14 +248,14 @@ const Home = () => {
             </CopyToClipboard>
           </div>
           {(postID && showEmbed) &&
-            <div className='flex flex-row w-full min-w-[400px] md:min-w-[500px] items-center justify-center mt-4 relative overflow-hidden'>
+            <div className='flex flex-row w-full min-w-[360px] md:min-w-[448px] items-center justify-center mt-4 relative overflow-hidden'>
               <IframeResizer
                 heightCalculationMethod="lowestElement"
                 inPageLinks
                 log={false}
                 onResized={onResized}
                 src={`/embed/${postID}`}
-                style={{ minWidth: '500px' }}
+                style={{ minWidth: '360px' }}
               />
             </div>
           }
