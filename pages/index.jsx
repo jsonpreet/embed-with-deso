@@ -200,7 +200,7 @@ const Home = () => {
         <title>Embed DeSo Posts On Your Website - With DeSo</title>
       </Head>
       <div className='main-section bg-[#031128] bg-gradient-to-br from-[#031128] to-[#0000ff33] w-full flex-col z-10 relative items-start justify-center'>
-        <div className='header-section flex flex-row items-start justify-between w-full px-20 py-5'>
+        <div className='header-section flex flex-row items-start justify-between w-full md:px-20 px-4 py-5'>
           <div className='flex flex-row items-center'>
             <a href='https://deso.com' className='flex flex-row items-center justify-center'>
               <Image src="/logo-deso-white.svg" alt="Deso Logo" width={100} height={35} />
@@ -209,8 +209,8 @@ const Home = () => {
             <h3 className='font-semibold ml-2 text-[#daedff]'>Embed</h3>
           </div>
         </div>
-        <div className='hero-section flex w-full sm:h-[200px] h-96 relative max-w-4xl mx-auto flex-auto flex-col items-center justify-center px-20 text-center'>
-          <h1 className='text-4xl text-[#daedff] my-font font-medium'>What would you like to embed?</h1>
+        <div className='hero-section flex w-full md:h-[200px] h-[200px] relative md:max-w-4xl mx-auto flex-auto flex-col items-center justify-center md:px-20 px-4 text-center'>
+          <h1 className='md:text-4xl text-[#daedff] my-font font-medium'>What would you like to embed?</h1>
           <div className='flex w-full relative flex-row mt-4'>
             <input
               type='text'
@@ -232,7 +232,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className='flex flex-col w-full max-w-3xl min-h-[100px] mx-auto items-center pt-10 pb-40 text-center'>
+      <div className='flex flex-col w-full md:px-0 px-4 max-w-3xl min-h-[100px] mx-auto items-center pt-10 pb-40 text-center'>
         <div ref={embedRef} className='embed flex-col w-full flex items-center justify-center'>
           <h3 className='text-center text-xl font-medium my-font'>To embed this post on your website, just paste the code below!</h3>
           <div className='flex flex-row w-full mt-4 relative overflow-hidden'>
@@ -241,8 +241,8 @@ const Home = () => {
                 <code className='bg-white border border-gray-200 focus:ring-4 focus:ring-offset-1 focus:ring-[#0099ff] transition duration-300 whitespace-nowrap cursor-pointer font-sans px-4 py-4 outline-none rounded-full shadow-inner text-black w-full block'>
                   <pre>{code}</pre>
                 </code>
-                <div className='absolute top-[1px] right-[-1px]'>
-                  <button className='bg-[#ffda59] text-[#6d4800] hover:bg-[#ffcf26] font-bold py-4 px-4 rounded-tr-full rounded-br-full'>Copy Code</button>
+                <div className='md:absolute md:top-[1px] md:right-[-1px] mt-4 mb-4 relative w-full'>
+                  <button className='bg-[#ffda59] text-[#6d4800] hover:bg-[#ffcf26] font-bold py-4 px-4 md:rounded-tr-full md:rounded-br-full rounded-full w-full'>Copy Code</button>
                 </div>
               </div>
             </CopyToClipboard>
