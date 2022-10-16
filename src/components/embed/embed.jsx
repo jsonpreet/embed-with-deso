@@ -90,7 +90,7 @@ const Embed = () => {
                     }
                 `}
             </style>
-            <div className='w-full min-w-[360px] sm:min-w-[448px] md:min-w-[500px] flex-row items-start justify-between'>
+            <div className='jsx-790afad6ff862db min-w-[360px] sm:min-w-[448px] md:min-w-[500px] justify-center items-center mx-auto flex-row'>
                 {loading && <div className='flex-row flex text-black w-full max-w-[500px]'>
                     <Shimmer />
                 </div>}

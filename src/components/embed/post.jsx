@@ -68,7 +68,7 @@ const Post = ({ post, exchangeRate, profile, nodes, isRepost }) => {
     }
 
     return (
-        <div className={`${isRepost ? `my-2  rounded-xl ` : ``} flex flex-1 bg-white border ${!isRepost ? `hover:bg-gray-50/80` : `hover:bg-gray-100/50`} transition duration-100 border-gray-200 p-[15px] flex-col w-full max-w-[500px]`}>
+        <div className={`${isRepost ? `my-2  rounded-xl ` : ``} flex bg-white border ${!isRepost ? `hover:bg-gray-50/80` : `hover:bg-gray-100/50`} transition duration-100 justify-center items-center mx-auto border-gray-200 p-[15px] flex-row max-w-[500px]`}>
             <div onClick={() => handleClick(`${nodeURL}/posts/${post.PostHashHex}`)} rel="noopener noreferrer nofollow" target='_blank' style={{ cursor: 'pointer'}}>
                 <div className='flex flex-row items-start w-full'>
                     <div className='flex flex-col w-full'>
