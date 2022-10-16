@@ -241,7 +241,7 @@ const Home = () => {
                 <code className='bg-white border border-gray-200 focus:ring-4 focus:ring-offset-1 focus:ring-[#0099ff] transition duration-300 whitespace-nowrap cursor-pointer font-sans px-4 py-4 outline-none rounded-full shadow-inner text-black w-full block'>
                   <pre>{code}</pre>
                 </code>
-                <div className='lg:absolute lg:top-[1px] lg:right-[-1px] mt-4 mb-4 relative w-full'>
+                <div className='lg:absolute lg:top-[1px] lg:right-[-1px] lg:mt-0 lg:mb-0 lg:w-auto mt-4 mb-4 relative w-full'>
                   <button className='bg-[#ffda59] text-[#6d4800] hover:bg-[#ffcf26] font-bold py-4 px-4 lg:rounded-tr-full lg:rounded-br-full rounded-full w-full'>Copy Code</button>
                 </div>
               </div>
