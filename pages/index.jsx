@@ -242,7 +242,7 @@ const Home = () => {
                   <pre>{code}</pre>
                 </code>
                 <div className='lg:absolute lg:top-[1px] lg:right-[-1px] lg:mt-0 lg:mb-0 lg:w-auto mt-4 mb-4 relative w-full'>
-                  <button className='bg-[#ffda59] text-[#6d4800] hover:bg-[#ffcf26] font-bold py-4 px-4 lg:rounded-tr-full lg:rounded-br-full rounded-full w-full'>Copy Code</button>
+                  <button className='bg-[#ffda59] text-[#6d4800] hover:bg-[#ffcf26] font-bold py-4 px-4 lg:rounded-tr-full lg:rounded-br-full lg:rounded-bl-0 lg:rounded-tl-0 rounded-full w-full'>Copy Code</button>
                 </div>
               </div>
             </CopyToClipboard>
