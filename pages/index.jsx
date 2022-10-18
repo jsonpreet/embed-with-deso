@@ -38,6 +38,9 @@ const Home = () => {
   React.useEffect(() => {
     getAppState()
     //newPost();
+    ga.event({
+      action: 'User landed on home page',
+    })
   }, [router])
 
 
