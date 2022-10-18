@@ -12,6 +12,7 @@ import { loadScript, removeQueryParam, useScript } from '@/lib/utils';
 import Script from 'next/script';
 import IframeResizer from 'iframe-resizer-react'
 import axios from 'axios';
+import * as ga from '@/lib/ga'
 
 
 const Home = () => {
@@ -51,6 +52,12 @@ const Home = () => {
     if (router.query.url !== undefined && router.query.url !== '') {
       setPostUrl(removeQueryParam(router.query.url))
       setQuery(removeQueryParam(router.query.url))
+      ga.event({
+          action: 'Post Url Get',
+          params : {
+            post_url: router.query.url,
+          }
+      })
     }
   }, [router]);
 
@@ -59,6 +66,13 @@ const Home = () => {
       const url = removeQueryParam(postUrl)
       router.replace(`?url=${url}`, undefined, { shallow: true })
       setPostID(url.split('/')[4])
+      
+      ga.event({
+          action: 'Post Url Fetched',
+          params : {
+            post_url: url,
+          }
+      })
     }
   }, [postUrl]);
 
@@ -66,6 +80,13 @@ const Home = () => {
     //loadScript(script)
     setCode(`<div class="deso-embed" data-post-hash="${postID}"></div><script src="https://embed.withdeso.com/script.js"></script>`)
     setShowEmbed(true)
+    
+    ga.event({
+        action: 'Post Code Generated',
+        params : {
+          post_id: postID,
+        }
+    })
   }, [postID])
 
 
@@ -76,6 +97,12 @@ const Home = () => {
 
   const copy = () => {
     setIsCopied(true);
+    ga.event({
+        action: 'Embed Code Copied',
+        params : {
+          post_id: postID,
+        }
+    })
     toast.success('Copied! Paste this code directly into the HTML portion of your site.', {
         position: "bottom-center",
         autoClose: 4000,
@@ -141,6 +168,13 @@ const Home = () => {
         setSuggestions(false)
         setPostUrl(e.target.value)
         setQuery(e.target.value);
+        
+      ga.event({
+          action: 'Post Search',
+          params : {
+            search: e.target.value,
+          }
+      })
     } else {
       setPostUrl('')
       setQuery('')
@@ -174,6 +208,13 @@ const Home = () => {
           setPostUrl(e.target.value)
           setSuggestions(false)
           setQuery(e.target.value);
+          
+        ga.event({
+            action: 'Post Search Entered',
+            params : {
+              search: e.target.value,
+            }
+        })
       } else {
           setSuggestions(true)
       }
@@ -189,6 +230,12 @@ const Home = () => {
         setPostUrl(value)
         setSuggestions(false)
         setQuery(value);
+        ga.event({
+            action: 'Post Link Pasted',
+            params : {
+              search: value,
+            }
+        })
     } else {
         setSuggestions(true)
     }

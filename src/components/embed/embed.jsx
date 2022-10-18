@@ -5,6 +5,7 @@ import { Shimmer } from '@/components/shimmer';
 import axios from 'axios';
 import Post from './post';
 import { useScript } from '@/lib/utils';
+import * as ga from '@/lib/ga'
 
 
 const Embed = () => {
@@ -24,6 +25,12 @@ const Embed = () => {
     React.useEffect(() => {
         if (router.query.id !== undefined && router.query.id !== '') {
             setPostID(router.query.id)
+            ga.event({
+                action: "set new post id",
+                params : {
+                    post_id: router.query.id
+                }
+            })
         } else if(router.query.id === '') {
             router.push('/')
         }

@@ -9,6 +9,7 @@ import "linkify-plugin-mention";
 import { calculateDurationUntilNow, dateFormat, nFormatter, useScript } from "@/lib/utils";
 import { getEmbedURL, getEmbedWidth, getEmbedHeight } from '@/lib/iframly';
 import { CommentIcon, DiamondIcon, LikeIcon, LinkIcon, RePostIcon } from '@/lib/constants';
+import * as ga from '@/lib/ga'
 
 const Post = ({ post, exchangeRate, profile, nodes, isRepost }) => {
     const [videoEmbed, setEmbed] = React.useState('')
@@ -22,6 +23,13 @@ const Post = ({ post, exchangeRate, profile, nodes, isRepost }) => {
         // if (post.IsNFT) {
         //     getNFTEntries()
         // }
+        ga.event({
+            action: "post rendered",
+            params : {
+                post_id: post.PostHashHex,
+                profile: profile.PublicKeyBase58Check
+            }
+        })
     }, [post])
 
     const getNFTEntries = async () => {
@@ -65,6 +73,13 @@ const Post = ({ post, exchangeRate, profile, nodes, isRepost }) => {
 
     const handleClick = (url) => {
         window.open(url, '_blank');
+        ga.event({
+            action: "post link clicked",
+            params : {
+                post_id: post.PostHashHex,
+                profile: profile.PublicKeyBase58Check
+            }
+        })
     }
 
     return (
