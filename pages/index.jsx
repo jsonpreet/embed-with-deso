@@ -22,39 +22,27 @@ const Home = () => {
   const [postID, setPostID] = React.useState('')
   const [suggestions, setSuggestions] = React.useState(false)
   const [query, setQuery] = React.useState('')
-  const [results, setResults] = React.useState([])
   const [loading, setLoading] = React.useState(false)
-  const [error, setError] = React.useState(false)
   const [code, setCode] = React.useState(`<div class="deso-embed" data-post-hash=""></div><script src="https://embed.withdeso.com/script.js"></script>`)
   const [copied, setIsCopied] = React.useState(false)
   const [showEmbed, setShowEmbed] = React.useState(false)
   const embedRef = React.useRef(null)
-  const iframeRef = React.useRef(null)
   const [nodes, setNodes] = React.useState({ '1': { 'Name': 'DeSo', 'URL': 'https://node.deso.org', 'Owner': 'diamondhands' } });
-  //const ogKeys = ['BC1YLiUt3iQG4QY8KHLPXP8LznyFp3k9vFTg2mhhu76d1Uu2WMw9RVY', 'BC1YLgk64us61PUyJ7iTEkV4y2GqpHSi8ejWJRnZwsX6XRTZSfUKsop', 'BC1YLgxLrxvq5mgZUUhJc1gkG6pwrRCTbdT6snwcrsEampjqnSD1vck', 'BC1YLj3a3xppVPtAoMAzh1FFYtCTiGomjaA5PRcqS1PVRk8KqDw385y', 'BC1YLh5pKXs8NqaUtN8Gzi3rfoAgG2VWio2NER7baDkG8T2x7wRnSwa', 'BC1YLhyuDGeWVgHmh3UQEoKstda525T1LnonYWURBdpgWbFBfRuntP5'];
 
-  const ogKeys = ['BC1YLgk64us61PUyJ7iTEkV4y2GqpHSi8ejWJRnZwsX6XRTZSfUKsop']
+  const [prefix, setPrefix] = React.useState('posts')
 
   React.useEffect(() => {
     getAppState()
-    //newPost();
     ga.event({
       action: 'User landed on home page',
     })
   }, [router])
 
-
-  React.useEffect(() => {
-    window.addEventListener('scroll', isSticky);
-    return () => {
-      window.removeEventListener('scroll', isSticky);
-    };
-  }, []);
-
   React.useEffect(() => {
     if (router.query.url !== undefined && router.query.url !== '') {
-      setPostUrl(removeQueryParam(router.query.url))
-      setQuery(removeQueryParam(router.query.url))
+      const url = removeQueryParam(router.query.url)
+      setPostUrl(url)
+      setQuery(url)
       ga.event({
           action: 'Post Url Get',
           params : {
@@ -66,21 +54,19 @@ const Home = () => {
 
   React.useEffect(() => {
     if (postUrl !== '') {
-      const url = removeQueryParam(postUrl)
-      router.replace(`?url=${url}`, undefined, { shallow: true })
-      setPostID(url.split('/')[4])
-      
+      router.replace(`?url=${postUrl}`, undefined, { shallow: true })
+      setPrefix(postUrl.split('/')[3])
+      setPostID(postUrl.split('/')[4])
       ga.event({
-          action: 'Post Url Fetched',
-          params : {
-            post_url: url,
-          }
+        action: 'Post Url Fetched',
+        params : {
+          post_url: postUrl,
+        }
       })
     }
   }, [postUrl]);
 
   React.useEffect(() => {
-    //loadScript(script)
     setCode(`<div class="deso-embed" data-post-hash="${postID}"></div><script src="https://embed.withdeso.com/script.js"></script>`)
     setShowEmbed(true)
     
@@ -125,7 +111,6 @@ const Home = () => {
       const request = {
         "PublicKeyBase58Check": '',
       }
-      //const response = await deso.metaData.getAppState(request);
       const { data } =  await axios.post(`https://node.deso.org/api/v0/get-app-state`,request)
       if (data) {
           setNodes(data.Nodes)
@@ -133,35 +118,6 @@ const Home = () => {
           setNodes({'1' : {'Name': 'DeSo', 'URL': 'https://node.deso.org', 'Owner': 'diamondhands'}})
       }
   }
-
-  const newPost = async () => {
-    const request = {
-      "NumToFetch": 1,
-      "PublicKeyBase58Check": `${ogKeys[Math.floor(Math.random() * ogKeys.length)]}`,
-    };
-    const { data } =  await axios.post(`https://node.deso.org/api/v0/get-posts-for-public-key`,request)
-    //const response = await deso.posts.getPostsForPublicKey(request);
-    if (data && data.Posts) {
-      const post = data.Posts[0];
-      const node = nodes[post?.PostExtraData?.Node] || nodes[1]
-      const nodeURL = (node.URL !== '') ? node.URL : `https://node.deso.org`;
-      const postURL = `${nodeURL}/post/${post.PostHashHex}`;
-      setPostUrl(postURL)
-      setQuery(postURL)
-    }
-  }
-  
-  const isSticky = (e) => {
-    // const header = document.querySelector('.header-section');
-    // const hero = document.querySelector('.hero-section');
-    // const main = document.querySelector('.main-section');
-    // const scrollTop = window.scrollY;
-    // if (scrollTop >= 425) {
-    //   header.classList.add('headerBG');
-    // } else {
-    //   header.classList.remove('headerBG');
-    // }
-  };
 
   const handleSearch = async (e) => {
     e.preventDefault()
@@ -304,7 +260,7 @@ const Home = () => {
                 inPageLinks
                 log={false}
                 onResized={onResized}
-                src={`/embed/${postID}`}
+                src={`/embed/${prefix}/${postID}`}
                 width="100%"
               />
             </div>

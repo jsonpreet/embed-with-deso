@@ -1,1 +1,2 @@
-export { default as Embed } from './embed'
+export { default as PostEmbed } from './post'
+export { default as UserEmbed } from './user'

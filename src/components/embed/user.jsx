@@ -3,50 +3,36 @@ import Head from 'next/head'
 import { useRouter } from 'next/router';
 import { Shimmer } from '@/components/shimmer';
 import axios from 'axios';
-import Post from './post';
 import { useScript } from '@/lib/utils';
 import * as ga from '@/lib/ga'
+import { Profile } from '@/components/profile';
 
 
-const Embed = () => {
+const UserEmbed = ({username}) => {
     const router = useRouter()
     if (!router) return null
-    const [suggestions, setSuggestions] = React.useState(false)
-    const [results, setResults] = React.useState([])
     const [loading, setLoading] = React.useState(false)
-    const [error, setError] = React.useState(false)
-    const [postID, setPostID] = React.useState('')
-    const [post, setPost] = React.useState('')
-    const [exchange, setExchange] = React.useState();
-    const [isLoaded, setLoaded] = React.useState(false);
+    const [profile, setProfile] = React.useState('')
+    const [exchange, setExchange] = React.useState()
+    const [followers, setFollowers] = React.useState(0)
+    const [following, setFollowing] = React.useState(0)
     const [nodes, setNodes] = React.useState({ '1': { 'Name': 'DeSo', 'URL': 'https://node.deso.org', 'Owner': 'diamondhands' } });
     useScript('/iframeResizer.contentWindow.min.js');
 
     React.useEffect(() => {
-        if (router.query.id !== undefined && router.query.id !== '') {
-            setPostID(router.query.id)
-            ga.event({
-                action: "set new post id",
-                params : {
-                    post_id: router.query.id
-                }
-            })
-        } else if(router.query.id === '') {
-            router.push('/')
-        }
-    }, [router]);
-
-    React.useEffect(() => {
-        if (postID !== '' && postID !== undefined) {
+        if (username !== '' && username !== undefined) {
             setLoading(true)
-            fetchPost(postID)
+            fetchProfile(username)
             getExchangeRate()
             getAppState()
+            getFollowers(username)
+            getFollowing(username)
         }
-    }, [postID])
+    }, [username])
+
+
 
     const getExchangeRate = async () => {
-        //const response = await deso.metaData.getExchangeRate();
         const { data } =  await axios.get(`https://node.deso.org/api/v0/get-exchange-rate`)
         setExchange(data)
     }
@@ -55,7 +41,6 @@ const Embed = () => {
         const request = {
             "PublicKeyBase58Check": '',
         }
-        //const response = await deso.metaData.getAppState(request);
         const { data } =  await axios.post(`https://node.deso.org/api/v0/get-app-state`,request)
         if (data) {
             setNodes(data.Nodes)
@@ -64,26 +49,42 @@ const Embed = () => {
         }
     }
 
-    const fetchPost = async (id) => {
+    const fetchProfile = async (id) => {
         const request = {
-            "PostHashHex": `${id}`,
+            "Username": `${id}`,
         }
-        const { data } =  await axios.post(`https://node.deso.org/api/v0/get-single-post`,request)
-        //const response = await deso.posts.getPostsForPublicKey(request);
-        if (data && data.PostFound) {
-            setPost(data.PostFound)
+        const { data } = await axios.post(`https://node.deso.org/api/v0/get-single-profile`, request)
+        if (data && data.Profile) {
+            setProfile(data.Profile)
             setLoading(false)
         }
-        // if (deso) {
-        //     const response = await deso.posts.getSinglePost(request);
-        //     if (response) {
-        //         setPost(response.PostFound)
-        //         setLoading(false)
-        //     } else {
-        //         console.log(response);
-        //     }
-        // }
     }
+
+    const getFollowers = async (username) => {
+        const request = {
+            "PublicKeyBase58Check": ``,
+            "Username": `${username}`,
+            "GetEntriesFollowingUsername": true,
+        }
+        const { data } =  await axios.post(`https://node.deso.org/api/v0/get-follows-stateless`,request)
+        if (data) {
+            setFollowers(data.NumFollowers)
+        }
+    }
+
+    const getFollowing = async (username) => {
+        const request = {
+            "PublicKeyBase58Check": ``,
+            "Username": `${username}`,
+            "GetEntriesFollowingUsername": false,
+        }
+        const { data } =  await axios.post(`https://node.deso.org/api/v0/get-follows-stateless`,request)
+        if (data) {
+            setFollowing(data.NumFollowers)
+        }
+    }
+
+
     const exchangeRate = exchange?.USDCentsPerDeSoExchangeRate / 100
     return (
         <>
@@ -101,13 +102,13 @@ const Embed = () => {
                 {loading && <div className='flex-row flex text-black justify-center items-center mx-auto max-w-[500px]'>
                     <Shimmer />
                 </div>}
-                {(!loading && post) &&
-                    <Post isRepost={false} post={post} exchangeRate={exchangeRate} profile={post?.ProfileEntryResponse} nodes={nodes} />
+                {(!loading && profile) &&
+                    <Profile profile={profile} exchangeRate={exchangeRate} followers={followers} following={following} nodes={nodes} />
                 }
             </div>
         </>
     )
 }
  
-export default Embed
+export default UserEmbed
 
