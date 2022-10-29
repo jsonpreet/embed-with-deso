@@ -13,6 +13,7 @@ import Script from 'next/script';
 import IframeResizer from 'iframe-resizer-react'
 import axios from 'axios';
 import * as ga from '@/lib/ga'
+import { LikeIcon } from '@/lib/constants';
 
 
 const Home = () => {
@@ -238,7 +239,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className='flex flex-col w-full lg:px-0 px-4 max-w-3xl min-h-[100px] mx-auto items-center pt-10 pb-40 text-center'>
+      <div className='flex flex-col w-full lg:px-0 px-4 max-w-3xl min-h-[100px] mx-auto items-center pt-10 text-center'>
         <div ref={embedRef} className='embed flex-col w-full flex items-center justify-center'>
           <h3 className='text-center text-xl font-medium my-font'>To embed this post on your website, just paste the code below!</h3>
           <div className='flex flex-row w-full mt-4 relative overflow-hidden'>
@@ -266,6 +267,15 @@ const Home = () => {
             </div>
           }
         </div>
+      </div>
+      <div className="flex mt-6 relative mb-2 z-20 flex-row items-center justify-center w-full">
+        <span>Made with</span>
+        <span className='text-[#fe3537] group-hover:bg-[#fe3537]/10 flex flex-col items-center justify-center z-10 meta_icon w-[30px] h-[30px] rounded-full'>
+          <span className='w-[20px] h-[20px] z-20 inline-block fill-transparent rounded-full stroke-current stroke-2' style={{strokeLinecap: 'round', strokeLinejoin: 'round'}}>
+            <LikeIcon />
+          </span>
+        </span>
+        <span>by <a className="hover:underline" href="https://node.deso.org" rel='noopener noreferrer nofollow' target='_blank'>MrPreet</a></span>
       </div>
     </>
   )
