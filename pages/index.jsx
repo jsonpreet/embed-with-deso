@@ -275,7 +275,7 @@ const Home = () => {
             <LikeIcon />
           </span>
         </span>
-        <span>by <a className="hover:underline" href="https://node.deso.org/u/MrPreet" rel='noopener noreferrer nofollow' target='_blank'>MrPreet</a></span>
+        <span>by <a className="hover:underline" href="https://diamondapp.com/u/MrPreet" rel='noopener noreferrer nofollow' target='_blank'>MrPreet</a></span>
       </div>
     </>
   )
