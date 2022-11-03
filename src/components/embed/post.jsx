@@ -19,7 +19,7 @@ const PostEmbed = ({postID}) => {
     const [exchange, setExchange] = React.useState();
     const [isLoaded, setLoaded] = React.useState(false);
     const [nodes, setNodes] = React.useState({ '1': { 'Name': 'DeSo', 'URL': 'https://node.deso.org', 'Owner': 'diamondhands' } });
-    useScript('/iframeResizer.contentWindow.min.js');
+    useScript('https://embed.withdeso.com/iframeResizer.contentWindow.min.js');
 
     React.useEffect(() => {
         if (postID !== '' && postID !== undefined) {

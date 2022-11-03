@@ -17,7 +17,7 @@ const UserEmbed = ({username}) => {
     const [followers, setFollowers] = React.useState(0)
     const [following, setFollowing] = React.useState(0)
     const [nodes, setNodes] = React.useState({ '1': { 'Name': 'DeSo', 'URL': 'https://node.deso.org', 'Owner': 'diamondhands' } });
-    useScript('/iframeResizer.contentWindow.min.js');
+    useScript('https://embed.withdeso.com/iframeResizer.contentWindow.min.js');
 
     React.useEffect(() => {
         if (username !== '' && username !== undefined) {
