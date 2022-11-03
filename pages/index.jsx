@@ -24,7 +24,7 @@ const Home = () => {
   const [suggestions, setSuggestions] = React.useState(false)
   const [query, setQuery] = React.useState('')
   const [loading, setLoading] = React.useState(false)
-  const [code, setCode] = React.useState(`<div class="deso-embed" data-post-hash=""></div><script src="https://embed.withdeso.com/script.js"></script>`)
+  const [code, setCode] = React.useState(`<div class="deso-embed" data-type="posts" data-post-hash=""></div><script src="https://embed.withdeso.com/script.js"></script>`)
   const [copied, setIsCopied] = React.useState(false)
   const [showEmbed, setShowEmbed] = React.useState(false)
   const embedRef = React.useRef(null)
@@ -68,7 +68,7 @@ const Home = () => {
   }, [postUrl]);
 
   React.useEffect(() => {
-    setCode(`<div class="deso-embed" data-post-hash="${postID}"></div><script src="https://embed.withdeso.com/script.js"></script>`)
+    setCode(`<div class="deso-embed" data-type="${prefix}" data-post-hash="${postID}"></div><script src="https://embed.withdeso.com/script.js"></script>`)
     setShowEmbed(true)
     
     ga.event({
