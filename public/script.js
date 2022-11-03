@@ -5,7 +5,7 @@
         const e = document.querySelectorAll(".deso-embed");
         for (let n = 0; n < e.length; n++) {
             const t = e[n],
-                i = t.getAttribute("data-post-hash");
+                i = t.getAttribute("data-post-hash"),
                 s = t.getAttribute("data-type");
             if (null == t) return;
             if (t.children.length > 0) return;
