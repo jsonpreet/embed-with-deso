@@ -31,6 +31,7 @@ const Home = () => {
   const [nodes, setNodes] = React.useState({ '1': { 'Name': 'DeSo', 'URL': 'https://node.deso.org', 'Owner': 'diamondhands' } });
 
   const [prefix, setPrefix] = React.useState('posts')
+  const [postPrefix, setPostPrefix] = React.useState('')
 
   React.useEffect(() => {
     getAppState()
@@ -56,8 +57,15 @@ const Home = () => {
   React.useEffect(() => {
     if (postUrl !== '') {
       router.replace(`?url=${postUrl}`, undefined, { shallow: true })
-      setPrefix(postUrl.split('/')[3])
-      setPostID(postUrl.split('/')[4])
+      if (postUrl.split('/')[5] !== undefined && postUrl.split('/')[5] !== '' && postUrl.split('/')[5] === 'blog') {
+        setPrefix(postUrl.split('/')[5]) 
+        setPostPrefix(postUrl.split('/')[4])
+        setPostID(postUrl.split('/')[6])
+      } else {
+        setPrefix(postUrl.split('/')[3])
+        setPostID(postUrl.split('/')[4])
+        setPostPrefix('')
+      }
       ga.event({
         action: 'Post Url Fetched',
         params : {
@@ -68,7 +76,7 @@ const Home = () => {
   }, [postUrl]);
 
   React.useEffect(() => {
-    setCode(`<div class="deso-embed" data-type="${prefix}" data-post-hash="${postID}"></div><script src="https://embed.withdeso.com/script.js"></script>`)
+    setCode(`<div class="deso-embed" data-type="${prefix}" ${postPrefix !== '' ? `data-user="${postPrefix}"` : ''} data-post-hash="${postID}"></div><script src="https://embed.withdeso.com/script.js"></script>`)
     setShowEmbed(true)
     
     ga.event({
@@ -261,7 +269,7 @@ const Home = () => {
                 inPageLinks
                 log={false}
                 onResized={onResized}
-                src={`/embed/${prefix}/${postID}`}
+                src={`/embed/${prefix}${postPrefix !== '' ? `/${postPrefix}` : ''}/${postID}`}
                 width="100%"
               />
             </div>
