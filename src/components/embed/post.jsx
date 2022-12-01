@@ -6,6 +6,7 @@ import axios from 'axios';
 import Post from '@/components/post';
 import { useScript } from '@/lib/utils';
 import * as ga from '@/lib/ga'
+import { NODE_API } from '@/lib/constants';
 
 
 const PostEmbed = ({postID}) => {
@@ -51,7 +52,7 @@ const PostEmbed = ({postID}) => {
         const request = {
             "PostHashHex": `${id}`,
         }
-        const { data } =  await axios.post(`https://node.deso.org/api/v0/get-single-post`,request)
+        const { data } =  await axios.post(`${NODE_API}/get-single-post`,request)
         if (data && data.PostFound) {
             setPost(data.PostFound)
             setLoading(false)

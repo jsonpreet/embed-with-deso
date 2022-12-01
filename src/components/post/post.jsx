@@ -8,7 +8,7 @@ import "linkify-plugin-hashtag";
 import "linkify-plugin-mention";
 import { calculateDurationUntilNow, dateFormat, nFormatter, useScript } from "@/lib/utils";
 import { getEmbedURL, getEmbedWidth, getEmbedHeight } from '@/lib/iframly';
-import { CommentIcon, DiamondIcon, LikeIcon, LinkIcon, RePostIcon } from '@/lib/constants';
+import { CommentIcon, DiamondIcon, LikeIcon, LinkIcon, NODE_API, RePostIcon } from '@/lib/constants';
 import * as ga from '@/lib/ga'
 
 const Post = ({ post, exchangeRate, profile, nodes, isRepost }) => {
@@ -36,7 +36,7 @@ const Post = ({ post, exchangeRate, profile, nodes, isRepost }) => {
         const request = {
             "PostHashHex": `${post.PostHashHex}`,
         }
-        const { data } =  await axios.post(`https://node.deso.org/api/v0/get-nft-entries-for-nft-post`,request)
+        const { data } =  await axios.post(`${NODE_API}/get-nft-entries-for-nft-post`,request)
         if (data) {
             setNftEntry(data)
         }

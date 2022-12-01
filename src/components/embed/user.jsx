@@ -6,6 +6,7 @@ import axios from 'axios';
 import { useScript } from '@/lib/utils';
 import * as ga from '@/lib/ga'
 import { Profile } from '@/components/profile';
+import { NODE_API } from '@/lib/constants';
 
 
 const UserEmbed = ({username}) => {
@@ -53,7 +54,7 @@ const UserEmbed = ({username}) => {
         const request = {
             "Username": `${id}`,
         }
-        const { data } = await axios.post(`https://node.deso.org/api/v0/get-single-profile`, request)
+        const { data } = await axios.post(`${NODE_API}/get-single-profile`, request)
         if (data && data.Profile) {
             setProfile(data.Profile)
             setLoading(false)

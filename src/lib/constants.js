@@ -41,3 +41,5 @@ export const LinkIcon = () => {
         </svg>
     )
 }
+
+export const NODE_API = 'https://diamondapp.com/api/v0' //https://node.deso.org/api/v0
