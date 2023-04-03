@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import axios from "axios"
 import React from "react"
 import Head from 'next/head'
@@ -48,7 +49,8 @@ const Post = ({ post, exchangeRate, profile, nodes, isRepost }) => {
 
     const node = nodes[post?.PostExtraData?.Node] || nodes[1]
 
-    const nodeURL = (node.URL !== '') ? node.URL : `https://node.deso.org`;
+    //const nodeURL = (node.URL !== '') ? node.URL : `https://node.deso.org`;
+    const nodeURL = `https://node.deso.org`;
 
     const LinkifyRenderLink = ({ attributes, content }) => {
         const { href, ...props } = attributes;

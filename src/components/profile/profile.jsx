@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Linkify from "linkify-react";
 import "linkify-plugin-hashtag";
 import "linkify-plugin-mention";
@@ -6,7 +7,8 @@ import * as ga from '@/lib/ga'
 const Profile = ({ exchangeRate, followers, following, profile, nodes }) => {
     const node = nodes[1]
 
-    const nodeURL = (node.URL !== '') ? node.URL : `https://node.deso.org`;
+    //const nodeURL = (node.URL !== '') ? node.URL : `https://node.deso.org`;
+    const nodeURL = `https://node.deso.org`;
 
     const LinkifyRenderLink = ({ attributes, content }) => {
         const { href, ...props } = attributes;

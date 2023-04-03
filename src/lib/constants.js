@@ -42,4 +42,4 @@ export const LinkIcon = () => {
     )
 }
 
-export const NODE_API = 'https://diamondapp.com/api/v0' //https://node.deso.org/api/v0
+export const NODE_API = 'https://node.deso.org/api/v0' //https://node.deso.org/api/v0
